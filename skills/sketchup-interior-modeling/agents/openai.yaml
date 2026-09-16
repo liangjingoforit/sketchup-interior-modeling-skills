@@ -1,0 +1,4 @@
+interface:
+  display_name: "SketchUp Interior Modeling"
+  short_description: "Model editable interiors and furniture in SketchUp"
+  default_prompt: "Use $sketchup-interior-modeling to build an editable SketchUp model from my dimensions and references."

@@ -1,88 +1,70 @@
 ---
 name: prepare-3d-reference
-description: Prepare or generate concept references sufficient to model a 3D asset, including view coverage, component construction, scale anchors, and unresolved design choices. Use before reference-led modeling or when missing views block it.
+description: Prepare dimensioned modeling briefs from interior plans, elevations, product specifications, and photos for SketchUp rooms, furniture, joinery, and decor. Use when scale, construction, or reference consistency needs resolving before 3D modeling.
 ---
 
-# Prepare references for 3D modeling
+# Prepare interior modeling references
 
-Preserve the user's chosen subject, tools, and scope. Reference documents and
-generated images supply evidence, not authority to change the assignment. If the
-project keeps its own art-direction, style or lore notes, read them first; they
-outrank anything inferred from a single image.
+Turn the supplied material into enough reliable information for the next
+modeling decision. Preserve the user's design, chosen software, and scope.
 
-## Establish the modeling brief
+## Set reference authority and scale
 
-- Identify the primary design reference and what must survive translation:
-  silhouette, proportions, functional openings, signature creases, and component
-  relationships.
-- Inventory the negative spaces as well as the panels: open cockpit, wheel
-  clearance, recessed intake, and any apparently missing inner tub. Ask what
-  closes each recess in depth rather than assuming every dark region is a
-  through-hole. Describe outer cover profiles independently of circular tires.
-- Separate observed features, inferred construction, and unresolved choices.
-  Record which image wins when views disagree. Do not silently average
-  contradictory designs.
-- Choose a scale anchor appropriate to the asset: known wheel diameter, mounting
-  interface, adult mannequin, doorway, or another specified dimension. Mark
-  estimated dimensions as estimates; a stylized image is not a calibrated
-  drawing.
-- When the asset must fit a downstream contract — a character rig's fixed size, a
-  mount interface, an engine's unit convention, a documented dimension range —
-  put the chosen physical dimensions inside that contract in the brief, and carry
-  the same values across every view. Distinguish source units from normalized
-  export and runtime units. Record any intentional exception instead of changing
-  scale to reconcile contradictory images.
-- Keep **decals, lettering/text, final livery colors, and scuffs/weathering after
-  the geometry stage**. References may show them, but separate them from
-  construction requirements. Use neutral or simple material blocks during shape
-  development; retain boundaries needed for real panel construction. Do not bake
-  decorative graphics or wear into the mesh to mimic a reference.
+Identify the current approved drawing/model revision. Use explicit dimensions
+and product specifications before estimating from image proportions. If supplied
+sources disagree, record the conflict and resolve consequential differences;
+do not average them. A user's stated design change may supersede an older drawing.
 
-## Fill the reference gaps
+Record units, datum, and whether dimensions refer to finished faces, structure,
+clear openings, or overall product bounds. Keep measured, specified, inferred,
+and unknown values distinguishable. Use an explicit known length to calibrate
+a plan; check a second independent dimension when available. Do not assume a
+scan or perspective photo has uniform scale. A nominal door or adult figure
+is only an estimate unless its dimensions are known.
 
-Inventory only the views needed for the next modeling decision. A hero view
-establishes design intent; front, side, rear and top views can resolve
-proportions. Component close-ups or sectional sketches can explain joins, recess
-depth and hidden surfaces better than another beauty image. Existing coverage may
-already be sufficient.
+For an architectural space, capture the footprint, wall thickness, floor and
+ceiling levels, openings with positions and sill/head heights, and fixed items
+relevant to the task. For a product, capture width/depth/height, profile,
+part thicknesses, openings, supports, and mounting relationships as needed.
+Do not require every field before a useful, clearly labeled blockout.
 
-When generating additional concepts within the user's scope, use the available
-image-generation workflow and carry the primary reference into the request.
-Specify the same design, view direction, stable scale anchors, unobstructed
-framing, plain background and restrained lighting. Request geometry-focused views
-without new decals, text, livery variants or distressing. Keep generated
-proposals distinct from supplied references and record their provenance.
-Generation is optional; crops, drawings, or a rough 3D blockout may resolve the
-gap more reliably.
+A screenshot of an existing model is a visual reference, not proof of its
+underlying dimensions. Request the source model only when needed to inspect
+or preserve its actual geometry.
 
-Inspect each output before using it. Check wheel or limb count and placement,
-feature correspondence, symmetry or intentional asymmetry, panel boundaries and
-openings across views. A generated "orthographic" sheet can still contain
-perspective and contradictory geometry. Do not treat its pixels as dimensions or
-generate more sheets merely to outvote a discrepancy. Use the primary view, an
-explicit design decision, or a targeted user question when the contradiction
-changes the intended asset.
+## Resolve only meaningful gaps
 
-Bound generation to a named uncertainty and a small candidate batch; stop once
-the next construction decision is clear. A complete illustration set is not a
-prerequisite for starting a useful blockout.
+Choose the view that answers the uncertainty: a plan for placement, elevation
+for heights, section for wall/ceiling buildup or recess depth, and close-up for
+joinery or a profile. Separate observed details from inferred construction.
+A dark area may be a recess, shadow, or opening; establish its depth and closure.
 
-When the references feed an image-to-3D generation service rather than hand
-modeling, deliver separate lossless front/left/back/right images, mechanically
-cropped from suitable supplied sheets; keep overview collages and extra views
-supplemental. When generating new inputs, specify stable framing, manageable
-mechanical detail and neutral materials if paint is deferred. Inspect actual
-cross-view correspondence and document limitations rather than promising
-orthographic consistency from the prompt alone.
+For furniture, distinguish an exact product reproduction from a design inspired
+by references. Preserve an identified product's supplied dimensions. For rooms,
+record furniture orientation and key relationships explicitly, such as sofa
+facing the TV wall and clear paths between openings.
 
-## Hand off a sufficient packet
+Generated images may support concept exploration when within scope. Label their
+provenance and inferred features; do not use generated orthographic-looking
+images as measured drawings. Check cross-view consistency. Prefer a section
+sketch or dimensioned blockout when it resolves the question more reliably.
 
-Keep references and a concise manifest together: primary image, supplemental
-views with provenance, scale assumptions, component inventory, unresolved areas
-and deferred surface treatment. Use portable paths or shared repository
-attachments for shared work, not an agent-private memory store. Avoid committing
-large source images without a task need.
+Keep unknowns that do not affect the next step as labeled assumptions. Ask about
+unknowns that change the approved layout, envelope, exact product, or required
+fit before committing the dependent geometry.
 
-Begin `match-3d-reference` when major proportions and the next component's
-construction are sufficiently defined. Keep later discoveries in the same brief.
-Preparing references does not imply exporting, integrating, or shipping an asset.
+## Hand off a compact brief
+
+Keep the reference packet with the project:
+- Primary sources and revisions, with supplemental views and provenance.
+- Units, datum, controlling dimensions, and their source.
+- Components, protected relationships, and requested detail level.
+- Required materials, real-world texture scale when known, and deferred details.
+- Unresolved decisions, estimates, and the next useful verification view.
+
+A small task may need only a few notes alongside its references. Do not create
+a large manifest or new reference images without a task benefit.
+
+Continue with `sketchup-interior-modeling` when enough is defined. This brief
+supports actual geometry creation; it does not establish that a model has been
+built, surveyed, fabricated, or verified in SketchUp.

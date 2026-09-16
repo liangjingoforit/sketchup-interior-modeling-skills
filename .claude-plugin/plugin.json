@@ -1,7 +1,15 @@
 {
   "name": "3d-modelling-skills",
-  "description": "Reference-led 3D modeling skills: prepare concept references sufficient to model from, then build and refine the mesh against them with component comparisons, connected surface construction, and fit checks.",
-  "version": "0.1.0",
+  "description": "SketchUp-focused interior modeling skills: prepare dimensioned references, then create and verify editable rooms, furniture, cabinetry, panels, and decor.",
+  "version": "0.2.0",
   "license": "MIT",
-  "keywords": ["3d", "blender", "modeling", "reference", "mesh", "concept-art"]
+  "keywords": [
+    "3d",
+    "sketchup",
+    "interior-design",
+    "furniture",
+    "cabinetry",
+    "modeling",
+    "reference"
+  ]
 }

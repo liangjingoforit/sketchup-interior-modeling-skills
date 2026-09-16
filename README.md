@@ -1,66 +1,67 @@
-# 3D modelling skills
+# SketchUp interior modeling skills
 
-Two agent skills for reference-led 3D modeling, in any host that reads Claude
-skills. They are tool-agnostic in wording but written from Blender practice.
+Dimension-first agent skills for interior designers creating editable SketchUp
+models: rooms, apartments, homes, furniture, cabinetry, wall panels, and decor.
 
-| Skill | Use it for |
+| Skill | Purpose |
 | --- | --- |
-| [`prepare-3d-reference`](skills/prepare-3d-reference/SKILL.md) | Turning a pile of concept images into a modeling brief: view coverage, component construction, scale anchors, and the choices still unresolved. Run it before modeling, or when a missing view blocks it. |
-| [`match-3d-reference`](skills/match-3d-reference/SKILL.md) | Building and iteratively refining the mesh against those references: component comparison, control-cage construction, intersection and seam checks, review sheets, and honest checkpoints. |
+| [sketchup-interior-modeling](skills/sketchup-interior-modeling/SKILL.md) | Build and revise native SketchUp geometry with useful components, physical dimensions, materials, and model verification. |
+| [prepare-3d-reference](skills/prepare-3d-reference/SKILL.md) | Resolve dimensions and construction from plans, elevations, specifications, and photos before modeling. |
 
-`match-3d-reference` hands back to `prepare-3d-reference` when the references
-contradict each other or a needed view is missing, so install both.
+## What is included
 
-## What they enforce
+The main skill routes to focused references for architectural spaces, furniture
+and joinery, panel systems, curved objects, SketchUp Ruby authoring, and delivery.
+The preparation skill is useful when sources need interpretation; the main skill
+can start directly from a sufficiently specified brief.
 
-- **Geometry before decoration.** Decals, lettering, final livery colors and
-  weathering wait until the silhouette is accepted, so a texture cannot disguise
-  a bad shape.
-- **Fixed cameras.** Baseline and candidate are compared under identical framing,
-  lighting and material treatment; camera and geometry never move together.
-- **Sparse control cages.** Broad curvature is resolved on a deliberately laid
-  out low-control surface before density is added. Decimating a scan is not a
-  substitute for designing topology.
-- **Fit as a blockout decision.** For anything carrying a figure, the real rig at
-  its real scale is seated before the cockpit is detailed — never a mannequin,
-  never by shrinking the character.
-- **Mechanical checks, not vibes.** Evaluated-mesh intersection tests against
-  named neighbors, stated seam tolerances, and export/reimport checkpoints, with
-  their coverage reported rather than implied.
-- **Honest checkpoints.** Rejected variants stay labeled rejected; passing mesh
-  checks never stand in for the user's visual target.
+The workflow prioritizes:
+- Supplied dimensions and approved layouts over guessed image proportions.
+- Editable groups and reusable components, with raw geometry kept Untagged.
+- Actual wall openings, panel thickness, joinery parts, and intentional contact.
+- Correct material scale, grain direction, and proportionate model detail.
+- Inspection of actual geometry and a saved/reopened SKP when SketchUp is available.
+- Clear separation between a prepared script and a verified model.
 
-## Install
+## Requirements and limits
 
-Pick whichever your host supports.
+This repository contains instructions and supporting references. It does not
+include a SketchUp connector, model generator, or example SKP files.
 
-Copy the skills into your personal skills directory:
+To execute native Ruby authoring, the agent needs access to a supported SketchUp
+desktop session and a way to run code there. Desktop Ruby is not assumed available
+in SketchUp for Web. Without execution access, the skill can guide preparation
+of a Ruby script, but must label it unexecuted and the model unverified.
 
-```bash
-cp -r skills/* ~/.claude/skills/
-```
+Revit and Rhino handoffs are optional. Imported geometry is not automatically a
+native Revit family or clean Rhino NURBS model. Native authoring workflows for
+those applications are outside this skill's primary scope.
 
-Or into a single project:
+## Install or update
 
-```bash
-cp -r skills/* .claude/skills/
-```
+Copy the two complete folders under `skills/` into the skill directory supported
+by your agent host. Include their `references/` and `agents/` subfolders where
+present. The repository retains its Claude plugin manifest and includes optional
+OpenAI UI metadata in each skill folder.
 
-Or add this repository as a plugin marketplace entry — it carries a
-`.claude-plugin/plugin.json` and exposes both skills under `skills/`.
+Version 0.2 replaces `match-3d-reference` with `sketchup-interior-modeling`.
+When updating an existing installation, replace the old installed
+`match-3d-reference` folder with the new folder and refresh
+`prepare-3d-reference`; update any explicit invocations of the old name.
+Updating this repository does not update an already installed copy automatically.
 
-## Adapting them to a project
+## Example requests
 
-The skills defer to the project rather than hard-coding one. Where they say "the
-project's own visual-verification and measurement procedures", "a documented
-dimension contract", or "the target application's actual character asset", point
-those at your own docs, contracts and pipeline — either by editing the SKILL.md
-or by keeping that detail in the project's own always-on instructions.
+- "Build this measured apartment plan in SketchUp; keep walls, ceilings, and furniture separately editable."
+- "Create a 2400 mm cabinet from this elevation, with separate doors, shelves, and countertop."
+- "Add a fluted wall panel system within these dimensions, keeping the module width and gaps fixed."
+- "Model this lamp from its product dimensions and reference photos."
+- "Change only this cabinet's depth and preserve the room layout and the other cabinet instances."
 
 ## Provenance
 
-Extracted from a game repository's internal agent skills and generalized: the
-repository-specific handbook paths, dimension contracts, pull-request case
-histories and sibling skill names were replaced with project-neutral wording. The
-substance — the iteration discipline and the failure modes it exists to prevent —
-is unchanged.
+Adapted from the reference-led modeling skills in
+[jwang47/3d-modelling-skills](https://github.com/jwang47/3d-modelling-skills).
+The original comparison and verification discipline is retained; vehicle and
+game-rig procedures have been replaced with SketchUp interior-design workflows.
+The original MIT license is retained.

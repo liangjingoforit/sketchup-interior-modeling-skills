@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prepare Interior 3D References"
+  short_description: "Prepare measured briefs for interior 3D modeling"
+  default_prompt: "Use $prepare-3d-reference to organize my plans and photos into a dimensioned interior modeling brief."
